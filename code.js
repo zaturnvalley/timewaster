@@ -2,6 +2,7 @@
   $(document).ready(function(){
     console.log('ready');
 
+    //Proto code to use with user obj as well, may pull from IP address
     var timeTable = {
       years: 00,
       days: 00,
@@ -11,13 +12,17 @@
     }
 
     function timerIncrementor(){
-      var second = document.getElementById('seconds').innerHTML;
+      //Increments
       var interval = setInterval( increment, 1000 );
+
+      //Getting IDs from HTML
+      var second = document.getElementById('seconds').innerHTML;
       var minute = document.getElementById('minutes').innerHTML;
       var hour = document.getElementById('hours').innerHTML;
       var day = document.getElementById('days').innerHTML;
       var year = document.getElementById('years').innerHTML;
 
+      //This runs through interval, checks conditions every second
       function increment() {
         second = second % 360 + 1;
         document.getElementById('seconds').innerHTML = second;
@@ -43,6 +48,7 @@
         }
       }
     }
+    //Calls function
     timerIncrementor();
   });
 })();
