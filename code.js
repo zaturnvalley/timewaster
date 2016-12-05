@@ -10,16 +10,40 @@
       seconds: 00
     }
 
-    function secondIncrementor(){
-      var i = document.getElementById('seconds').innerHTML;
-      console.log(i)
+    function timerIncrementor(){
+      var second = document.getElementById('seconds').innerHTML;
       var interval = setInterval( increment, 1000 );
+      var minute = document.getElementById('minutes').innerHTML;
+      var hour = document.getElementById('hours').innerHTML;
+      var day = document.getElementById('days').innerHTML;
+      var year = document.getElementById('years').innerHTML;
+
       function increment() {
-        i = i % 360 + 1;
-        document.getElementById('seconds').innerHTML = i;
+        second = second % 360 + 1;
+        document.getElementById('seconds').innerHTML = second;
+        if (second >= 60) {
+          minute = minute % 360 + 1;
+          document.getElementById('minutes').innerHTML = minute;
+          second = 0;
+        }
+        if (minute >= 60) {
+          hour = hour % 360 + 1;
+          document.getElementById('hours').innerHTML = hour;
+          minute = 0;
+        }
+        if (hour >= 24) {
+          day = day % 360 + 1;
+          document.getElementById('day').innerHTML = day;
+          hour = 0;
+        }
+        if (day >= 360) {
+          year = year % 360 + 1;
+          document.getElementById('year').innerHTML = year;
+          day = 0;
+        }
       }
     }
-    secondIncrementor()
+    timerIncrementor();
   });
 })();
 
