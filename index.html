@@ -10,38 +10,25 @@
   <script type="text/javascript" src="code.js"></script>
 </head>
 <body>
-  <!-- Static navbar -->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Time Waster</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="navbar-brand" id='location'></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
 
-    <div class="container text-center">
-      <h2>
-        <span id="seconds">0</span> Seconds
-        <br>
-        <span id="minutes">0</span> Minutes
-        <br>
-        <span id="hours">0</span> Hours
-        <br>
-        <span id="days">0</span> Days
-        <br>
-        <span id="years">0</span> Years 
-      </h2>
-    </div>
+  <div class="container text-center">
+    <h1 id="location"></h1>
+  </div>
+
+  <div class="container text-center">
+    <h2>
+      You Have Wasted:
+      <br>
+      <span id="seconds">0</span> Seconds
+      <br>
+      <span id="minutes">0</span> Minutes
+      <br>
+      <span id="hours">0</span> Hours
+      <br>
+      <span id="days">0</span> Days
+      <br>
+      <span id="years">0</span> Years 
+    </h2>
+  </div>
 </body>
 </html>

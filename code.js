@@ -11,7 +11,7 @@
         url: 'http://freegeoip.net/json/' + ipAddress,
         method: 'get',
         success: function(res){
-          document.getElementById('location').innerHTML = 'Hello Timewaster from ' + res.city;
+          document.getElementById('location').innerHTML = 'Hello Time Waster from ' + res.city;
         }, error: function(err){
           document.getElementById('location').innerHTML = 'Hello Timewaster';
         }
