@@ -1,15 +1,22 @@
 (function(){
   $(document).ready(function(){
-    console.log('ready');
 
-    //Proto code to use with user obj as well, may pull from IP address
-    var timeTable = {
-      years: 00,
-      days: 00,
-      hours: 00,
-      minutes: 00,
-      seconds: 00
-    }
+
+    //Gets IP address 
+    $.getJSON("http://jsonip.com/?callback=?", function (data) {
+      var ipAddress = data.ip;
+
+      //Call gets location from IP address, returns location in navbar
+      var response = $.ajax({
+        url: 'http://freegeoip.net/json/' + ipAddress,
+        method: 'get',
+        success: function(res){
+          document.getElementById('location').innerHTML = 'Hello Timewaster from ' + res.city;
+        }, error: function(err){
+          document.getElementById('location').innerHTML = 'Hello Timewaster';
+        }
+      });
+    });
 
     function timerIncrementor(){
       //Increments
