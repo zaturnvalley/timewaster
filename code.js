@@ -69,7 +69,7 @@
      */
 
     var options = {
-        color: "rgba(255,255,255,0.1)",
+        color: "rgba(255,255,255,0.2)",
         waveAmplitude: 40,
         waveRadius: 200,
         waveElasticity: 0.95,
