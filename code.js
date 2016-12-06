@@ -3,12 +3,12 @@
 
 
     //Gets IP address 
-    $.getJSON("http://jsonip.com/?callback=?", function (data) {
+    $.getJSON("https://jsonip.com/?callback=?", function (data) {
       var ipAddress = data.ip;
 
       //Call gets location from IP address, returns location in navbar
       var response = $.ajax({
-        url: 'http://freegeoip.net/json/' + ipAddress,
+        url: 'https://freegeoip.net/json/' + ipAddress,
         method: 'get',
         success: function(res){
           document.getElementById('location').innerHTML = 'Hello Time Waster from ' + res.city;
