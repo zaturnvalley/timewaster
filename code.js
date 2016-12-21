@@ -5,15 +5,18 @@
     //Gets IP address 
     $.getJSON("https://jsonip.com/?callback=?", function (data) {
       var ipAddress = data.ip;
+      var location = $('#location');
 
       //Call gets location from IP address, returns location in navbar
       var response = $.ajax({
         url: 'https://freegeoip.net/json/' + ipAddress,
         method: 'get',
         success: function(res){
-          document.getElementById('location').innerHTML = 'Hello Time Waster from ' + res.city;
+          location.html('Hello Time Waster from ' + res.city);
+          console.log('Hello person from', res.city);
         }, error: function(err){
-          document.getElementById('location').innerHTML = 'Hello Timewaster';
+          location.html('Hello Time Waster');
+          console.log(err);
         }
       });
     });
@@ -23,11 +26,11 @@
       var interval = setInterval( increment, 1000 );
 
       //Getting IDs from HTML
-      var second = document.getElementById('seconds').innerHTML;
-      var minute = document.getElementById('minutes').innerHTML;
-      var hour = document.getElementById('hours').innerHTML;
-      var day = document.getElementById('days').innerHTML;
-      var year = document.getElementById('years').innerHTML;
+      var second = $('#seconds').html();
+      var minute = $('#minutes').html();
+      var hour = $('#hours').html();
+      var day = $('#days').html();
+      var year = $('#years').html();
 
       //This runs through interval, checks conditions every second
       function increment() {
