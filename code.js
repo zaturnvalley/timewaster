@@ -22,41 +22,60 @@
     });
 
     function timerIncrementor(){
+      if (!localStorage.time || typeof localStorage.time.second != 'number') {
+        //Time Object
+        var time = {
+          second: 0,
+          minute: 0,
+          hour: 0,
+          day: 0,
+          year: 0
+        }
+        localStorage.setItem('time', JSON.stringify(time));
+      }
+
+      var storageTime = JSON.parse(localStorage.time);
+      console.log(storageTime)
+
       //Increments
       var interval = setInterval( increment, 1000 );
 
       //Getting IDs from HTML
-      var second = $('#seconds').html();
-      var minute = $('#minutes').html();
-      var hour = $('#hours').html();
-      var day = $('#days').html();
-      var year = $('#years').html();
+      // var second = $('#seconds').html();
+      // var minute = $('#minutes').html();
+      // var hour = $('#hours').html();
+      // var day = $('#days').html();
+      // var year = $('#years').html();
 
       //This runs through interval, checks conditions every second
       function increment() {
-        second = second % 360 + 1;
-        document.getElementById('seconds').innerHTML = second;
-        if (second >= 60) {
-          minute = minute % 360 + 1;
-          document.getElementById('minutes').innerHTML = minute;
-          second = 0;
+        // second = second % 360 + 1;
+        // console.log(time)
+        storageTime.second = storageTime.second % 360 + 1;
+        document.getElementById('seconds').innerHTML = storageTime.second;
+        if (storageTime.second >= 60) {
+          storageTime.minute = storageTime.minute % 360 + 1;
+          document.getElementById('minutes').innerHTML = storageTime.minute;
+          storageTime.second = 0;
         }
-        if (minute >= 60) {
-          hour = hour % 360 + 1;
-          document.getElementById('hours').innerHTML = hour;
-          minute = 0;
+        if (storageTime.minute >= 60) {
+          storageTime.hour = storageTime.hour % 360 + 1;
+          document.getElementById('hours').innerHTML = storageTime.hour;
+          storageTime.minute = 0;
         }
-        if (hour >= 24) {
-          day = day % 360 + 1;
-          document.getElementById('day').innerHTML = day;
-          hour = 0;
+        if (storageTime.hour >= 24) {
+          storageTime.day = storageTime.day % 360 + 1;
+          document.getElementById('day').innerHTML = storageTime.day;
+          storageTime.hour = 0;
         }
-        if (day >= 360) {
-          year = year % 360 + 1;
-          document.getElementById('year').innerHTML = year;
-          day = 0;
+        if (storageTime.day >= 360) {
+          storageTime.year = storageTime.year % 360 + 1;
+          document.getElementById('year').innerHTML = storageTime.year;
+          storageTime.day = 0;
         }
       }
+      console.log(storageTime)
+      localStorage.setItem('time', JSON.stringify(storageTime));
     }
     //Calls function
     timerIncrementor();
