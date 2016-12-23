@@ -1,9 +1,12 @@
 (function(){
   $(document).ready(function(){
+    console.log('test 1', JSON.parse(localStorage.time))
+    //Starts timer
+    timerIncrementor();
     //gets time from local storage or creates it
     function getTime() {
       var localStorageTimeObj = localStorage.getItem('time');
-      if (!localStorageTimeObj || typeof localStorageTimeObj.second != 'number') {
+      if (!localStorageTimeObj) {
         //Time Object
         var time = {
           second: 0,
@@ -13,6 +16,7 @@
           year: 0
         }
         localStorage.setItem('time', JSON.stringify(time));
+        console.log('hits')
         return time;
       }
       if (localStorageTimeObj != null){
@@ -42,14 +46,13 @@
     function timerIncrementor(){
       //get time from local storage
       var storageTime = getTime();
-
+      console.log('test2',storageTime);
       //Increments
       var interval = setInterval( increment, 1000 );
 
       //This runs through interval, checks conditions every second
       function increment() {
-        // second = second % 360 + 1;
-        // console.log(time)
+
         storageTime.second++;
         localStorage.setItem('time', JSON.stringify(storageTime));
         $('#seconds').text(storageTime.second);
@@ -75,8 +78,7 @@
         }
       }
     }
-    //Calls function
-    timerIncrementor();
+
     //Canvas background code from https://codepen.io/MathiasPaumgarten/pen/CbEjG
     var canvas = document.getElementById( "canvas" );
     var size = {
