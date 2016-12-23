@@ -1,6 +1,25 @@
 (function(){
   $(document).ready(function(){
-
+    //gets time from local storage or creates it
+    function getTime() {
+      var localStorageTimeObj = JSON.parse(localStorage.time)
+      if (!localStorageTimeObj || typeof localStorageTimeObj.second != 'number') {
+        //Time Object
+        var time = {
+          second: 0,
+          minute: 0,
+          hour: 0,
+          day: 0,
+          year: 0
+        }
+        localStorage.setItem('time', JSON.stringify(time));
+        return time;
+      }
+      var time = localStorage.getItem('time');
+      if (localStorageTimeObj != null){
+        return localStorageTimeObj;
+      }
+    }
 
     //Gets IP address 
     $.getJSON("https://jsonip.com/?callback=?", function (data) {
@@ -22,20 +41,8 @@
     });
 
     function timerIncrementor(){
-      if (!localStorage.time || typeof localStorage.time.second != 'number') {
-        //Time Object
-        var time = {
-          second: 0,
-          minute: 0,
-          hour: 0,
-          day: 0,
-          year: 0
-        }
-        localStorage.setItem('time', JSON.stringify(time));
-      }
 
-      var storageTime = JSON.parse(localStorage.time);
-      console.log(storageTime)
+      var storageTime = getTime();
 
       //Increments
       var interval = setInterval( increment, 1000 );
@@ -52,30 +59,30 @@
         // second = second % 360 + 1;
         // console.log(time)
         storageTime.second = storageTime.second % 360 + 1;
-        document.getElementById('seconds').innerHTML = storageTime.second;
+        $('#seconds').text(storageTime.second);
         if (storageTime.second >= 60) {
           storageTime.minute = storageTime.minute % 360 + 1;
-          document.getElementById('minutes').innerHTML = storageTime.minute;
+          $('#minutes').text(storageTime.minute);
           storageTime.second = 0;
         }
         if (storageTime.minute >= 60) {
           storageTime.hour = storageTime.hour % 360 + 1;
-          document.getElementById('hours').innerHTML = storageTime.hour;
+          $('#hours').text(storageTime.hour);
           storageTime.minute = 0;
         }
         if (storageTime.hour >= 24) {
           storageTime.day = storageTime.day % 360 + 1;
-          document.getElementById('day').innerHTML = storageTime.day;
+          $('#day').text(storageTime.day);
           storageTime.hour = 0;
         }
         if (storageTime.day >= 360) {
           storageTime.year = storageTime.year % 360 + 1;
-          document.getElementById('year').innerHTML = storageTime.year;
+          $('#year').text(storageTime.year);
           storageTime.day = 0;
         }
       }
-      console.log(storageTime)
       localStorage.setItem('time', JSON.stringify(storageTime));
+      console.log(storageTime)
     }
     //Calls function
     timerIncrementor();
