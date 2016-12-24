@@ -42,17 +42,22 @@
     });
 
     function timerIncrementor(){
-      //get time from local storage
+      //Get time from local storage, or if not there, set to zero
       var storageTime = getTime();
-      console.log('test2',storageTime);
-      //Increments
+
+      //Increments incrementor function every 1000 milisec
       var interval = setInterval( increment, 1000 );
 
       //This runs through interval, checks conditions every second
       function increment() {
 
-        storageTime.second++;
+        //set local storage to storageTime
         localStorage.setItem('time', JSON.stringify(storageTime));
+
+        //increment time by 1
+        storageTime.second++;
+
+        //show updated time on seconds id
         $('#seconds').text(storageTime.second);
         if (storageTime.second >= 60) {
           storageTime.minute++;
@@ -64,7 +69,7 @@
           $('#hours').text(storageTime.hour);
           storageTime.minute = 0;
         }
-        if (storageTime.hour >= 24) {
+        if (storageTime.hour >= 60) {
           storageTime.day = storageTime.day % 360 + 1;
           $('#day').text(storageTime.day);
           storageTime.hour = 0;
@@ -76,9 +81,18 @@
         }
       }
     }
-    $('#reset').click(function(){
-      console.log('hi');
-    });
+    // $('#reset').click(function(){
+    //   var time = {
+    //     second: 0,
+    //     minute: 0,
+    //     hour: 0,
+    //     day: 0,
+    //     year: 0
+    //   }
+    //   localStorage.setItem('time', time);
+    //   $('.numbers').text('0');
+    // });
+
     //Canvas background code from https://codepen.io/MathiasPaumgarten/pen/CbEjG
     var canvas = document.getElementById( "canvas" );
     var size = {
