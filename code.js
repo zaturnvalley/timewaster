@@ -1,6 +1,5 @@
 (function(){
   $(document).ready(function(){
-    console.log('test 1', JSON.parse(localStorage.time))
     //Starts timer
     timerIncrementor();
     //gets time from local storage or creates it
@@ -16,7 +15,6 @@
           year: 0
         }
         localStorage.setItem('time', JSON.stringify(time));
-        console.log('hits')
         return time;
       }
       if (localStorageTimeObj != null){
@@ -78,7 +76,9 @@
         }
       }
     }
-
+    $('#reset').click(function(){
+      console.log('hi');
+    });
     //Canvas background code from https://codepen.io/MathiasPaumgarten/pen/CbEjG
     var canvas = document.getElementById( "canvas" );
     var size = {

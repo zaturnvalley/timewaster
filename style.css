@@ -20,7 +20,7 @@ body {
   background-color: #67D2C8;
   color:white;
   font-family: 'Futura';
-  margin-top: 5em;
+  margin-top: 2em;
 }
 #location {
   color: white;
@@ -30,6 +30,14 @@ h1 {
 }
 h2 {
   font-size: 4em;
+}
+#reset {
+  cursor: pointer;
+  position: absolute;
+  margin: 0 -30px;
+  background-color: rgba(66,139,202,.7);
+  border-color: rgba(0,0,0,.2);
+  z-index: 2 !important;
 }
 @import "compass/css3";
 
